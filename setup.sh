@@ -15,5 +15,10 @@ echo ---------- GIT ----------
 echo 
 sudo DEBIAN_FRONTEND=noninteractive apt -yq install git
 
+echo ---------- SSH ----------
+echo 
+sudo systemctl enable ssh
+sudo systemctl start ssh
+
 echo
 echo -e "${GREEN}DONE!${NC}"
