@@ -4,9 +4,9 @@ clear
 
 echo ########## FIRST UPDATE/UPGRADE ##########
 echo 
-sudo apt update -y
-sudo apt full-upgrade
+sudo DEBIAN_FRONTEND=noninteractive apt -yq update
+sudo DEBIAN_FRONTEND=noninteractive apt -yq full-upgrade
 
 echo ########## GIT ##########
 echo 
-sudo apt install git
+sudo DEBIAN_FRONTEND=noninteractive apt -yq install git
