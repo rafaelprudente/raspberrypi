@@ -2,7 +2,11 @@
 
 sudo apt update
 
-download script
+sudo apt full-upgrade
+
+sudo apt install git
+
+# download script
 
 sudo curl https://github.com/rafaelprudente/raspberrypi/blob/master/setup.sh --output setup.sh
 
