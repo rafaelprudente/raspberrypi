@@ -6,13 +6,14 @@ NC='\033[0m'
 
 clear
 
-echo ########## FIRST UPDATE/UPGRADE ##########
+echo ---------- FIRST UPDATE/UPGRADE ----------
 echo 
 sudo DEBIAN_FRONTEND=noninteractive apt -yq update
 sudo DEBIAN_FRONTEND=noninteractive apt -yq full-upgrade
 
-echo ########## GIT ##########
+echo ---------- GIT ----------
 echo 
 sudo DEBIAN_FRONTEND=noninteractive apt -yq install git
 
+echo
 echo -e "${GREEN}DONE!${NC}"
