@@ -20,14 +20,14 @@ IFS='.'
 read -ra ipAddr <<< "$gateway"
 IFS=' '
 if [ "$#" -ne 1 ] ; then
-  newIP="$ipAddr[0].$ipAddr[1].$ipAddr[2].200"
+  newIP="${ipAddr[0]}.${ipAddr[1]}.${ipAddr[2]}.200"
 else  
-  newIP="$ipAddr[0].$ipAddr[1].$ipAddr[2].$1"
+  newIP="${ipAddr[0]}.${ipAddr[1]}.${ipAddr[2]}.$1"
 fi
 echo "Fixed IP: $newIP"
 
 echo
-echo ---------- FIXED IP ($newIP) ----------
+echo "---------- FIXED IP ($newIP) ----------"
 sudo cp /etc/dhcpcd.conf /etc/dhcpcd.conf.bkp
 echo "hostname" > /etc/dhcpcd.conf
 echo "clientid" >> /etc/dhcpcd.conf
