@@ -56,8 +56,8 @@ sudo cp /etc/dhcpcd.conf.bkp /etc/dhcpcd.conf
 #sudo systemctl enable ssh
 #sudo systemctl start ssh
 
-read -p "Reboot now [Y/N]? " -n 1 -r
 echo
+read -p "Reboot now [Y/N]? " -n 1 -r
 if [[ ! $REPLY =~ ^[Yy]$ ]]
 then
     echo
