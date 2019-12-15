@@ -42,8 +42,8 @@ echo "static ip_address=$newIP/24" >> /etc/dhcpcd.conf
 echo "static routers=$gateway" >> /etc/dhcpcd.conf
 echo "static domain_name_servers=$gateway" >> /etc/dhcpcd.conf
 
-sudo cat /etc/dhcpcd.conf
-sudo cp /etc/dhcpcd.conf.bkp /etc/dhcpcd.conf
+#sudo cat /etc/dhcpcd.conf
+#sudo cp /etc/dhcpcd.conf.bkp /etc/dhcpcd.conf
 
 #echo
 #echo ---------- GIT ----------
