@@ -8,8 +8,8 @@ clear
 
 echo ---------- FIRST UPDATE/UPGRADE ----------
 echo 
-#sudo DEBIAN_FRONTEND=noninteractive apt -yq update
-#sudo DEBIAN_FRONTEND=noninteractive apt -yq full-upgrade
+sudo DEBIAN_FRONTEND=noninteractive apt -yq update
+sudo DEBIAN_FRONTEND=noninteractive apt -yq full-upgrade
 
 echo
 echo ---------- GATEWAY ----------
@@ -45,16 +45,16 @@ echo "static domain_name_servers=$gateway" >> /etc/dhcpcd.conf
 #sudo cat /etc/dhcpcd.conf
 #sudo cp /etc/dhcpcd.conf.bkp /etc/dhcpcd.conf
 
-#echo
-#echo ---------- GIT ----------
-#echo 
-#sudo DEBIAN_FRONTEND=noninteractive apt -yq install git
-#
-#echo
-#echo ---------- SSH ----------
-#echo 
-#sudo systemctl enable ssh
-#sudo systemctl start ssh
+echo
+echo ---------- GIT ----------
+echo 
+sudo DEBIAN_FRONTEND=noninteractive apt -yq install git
+
+echo
+echo ---------- SSH ----------
+echo 
+sudo systemctl enable ssh
+sudo systemctl start ssh
 
 echo
 read -p "Reboot now [Y/N]? " -n 1 -r
