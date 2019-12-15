@@ -55,13 +55,13 @@ sudo cp /etc/dhcpcd.conf.bkp /etc/dhcpcd.conf
 #echo 
 #sudo systemctl enable ssh
 #sudo systemctl start ssh
-#
-#read -p "Reboot now [Y/N]? " -n 1 -r
-#echo
-#if [[ ! $REPLY =~ ^[Yy]$ ]]
-#then
-#    echo
-#    echo -e "${GREEN}Done!${NC}"
-#    exit 0
-#fi
-#sudo reboot
+
+read -p "Reboot now [Y/N]? " -n 1 -r
+echo
+if [[ ! $REPLY =~ ^[Yy]$ ]]
+then
+    echo
+    echo -e "${GREEN}Done!${NC}"
+    exit 0
+fi
+sudo reboot
