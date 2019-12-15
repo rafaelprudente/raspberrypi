@@ -17,18 +17,18 @@ echo ---------- GATEWAY ----------
 gateway=$(route -n | grep UG | grep -E -o "(1[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)")
 echo $gateway
 sudo cp /etc/dhcpcd.conf /etc/dhcpcd.conf.bkp
-echo "hostname\n" > /etc/dhcpcd.conf
-echo "clientid\n" >> /etc/dhcpcd.conf
-echo "persistent\n" >> /etc/dhcpcd.conf
-echo "option rapid_commit\n" >> /etc/dhcpcd.conf
-echo "option domain_name_servers, domain_name, domain_search, host_name\n" >> /etc/dhcpcd.conf
-echo "option classless_static_routes\n" >> /etc/dhcpcd.conf
-echo "option interface_mtu\n" >> /etc/dhcpcd.conf
-echo "require dhcp_server_identifier\n" >> /etc/dhcpcd.conf
-echo "slaac private\n" >> /etc/dhcpcd.conf
-echo "static ip_address=192.168.1.200/24\n" >> /etc/dhcpcd.conf
-echo "static routers=$gateway\n" >> /etc/dhcpcd.conf
-echo "static domain_name_servers=$gateway\n" >> /etc/dhcpcd.conf
+echo "hostname" > /etc/dhcpcd.conf
+echo "clientid" >> /etc/dhcpcd.conf
+echo "persistent" >> /etc/dhcpcd.conf
+echo "option rapid_commit" >> /etc/dhcpcd.conf
+echo "option domain_name_servers, domain_name, domain_search, host_name" >> /etc/dhcpcd.conf
+echo "option classless_static_routes" >> /etc/dhcpcd.conf
+echo "option interface_mtu" >> /etc/dhcpcd.conf
+echo "require dhcp_server_identifier" >> /etc/dhcpcd.conf
+echo "slaac private" >> /etc/dhcpcd.conf
+echo "static ip_address=192.168.1.201/24" >> /etc/dhcpcd.conf
+echo "static routers=$gateway" >> /etc/dhcpcd.conf
+echo "static domain_name_servers=$gateway" >> /etc/dhcpcd.conf
 
 sudo cat /etc/dhcpcd.conf
 sudo cp /etc/dhcpcd.conf.bkp /etc/dhcpcd.conf
