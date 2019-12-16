@@ -7,13 +7,13 @@ NC='\033[0m'
 
 clear
 
-echo "${CYAN}---------- FIRST UPDATE/UPGRADE ----------${NC}"
+echo -e "${CYAN}---------- FIRST UPDATE/UPGRADE ----------${NC}"
 echo 
 sudo DEBIAN_FRONTEND=noninteractive apt -yq update
 sudo DEBIAN_FRONTEND=noninteractive apt -yq full-upgrade
 
 echo
-echo "${CYAN}---------- GATEWAY ----------${NC}"
+echo -e "${CYAN}---------- GATEWAY ----------${NC}"
 gateway=$(route -n | grep UG | grep -E -o "(1[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)")
 echo "Gateway: $gateway"
 
@@ -28,7 +28,7 @@ fi
 echo "Fixed IP: $newIP"
 
 echo
-echo "${CYAN}---------- FIXED IP ($newIP) ----------${NC}"
+echo -e "${CYAN}---------- FIXED IP ($newIP) ----------${NC}"
 #sudo cp /etc/dhcpcd.conf /etc/dhcpcd.conf.bkp
 #echo "hostname" > /etc/dhcpcd.conf
 #echo "clientid" >> /etc/dhcpcd.conf
@@ -47,12 +47,15 @@ echo "${CYAN}---------- FIXED IP ($newIP) ----------${NC}"
 #sudo cp /etc/dhcpcd.conf.bkp /etc/dhcpcd.conf
 
 echo
-echo "${CYAN}---------- GIT ----------${NC}"
+echo -e "${CYAN}---------- GIT ----------${NC}"
 echo 
 sudo DEBIAN_FRONTEND=noninteractive apt -yq install git
 
+git config --global user.name "rafaelprudente"
+git config --global user.email rafael.prudente.santos@gmail.com
+
 echo
-echo "${CYAN}---------- SSH ----------${NC}"
+echo -e "${CYAN}---------- SSH ----------${NC}"
 echo 
 sudo systemctl enable ssh
 sudo systemctl start ssh
