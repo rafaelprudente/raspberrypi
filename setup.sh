@@ -13,6 +13,19 @@ sudo DEBIAN_FRONTEND=noninteractive apt -yq update
 sudo DEBIAN_FRONTEND=noninteractive apt -yq full-upgrade
 
 echo
+echo -e "${CYAN}---------- GIT ----------${NC}"
+echo 
+sudo DEBIAN_FRONTEND=noninteractive apt -yq install git
+
+git config --global user.name "rafaelprudente"
+git config --global user.email rafael.prudente.santos@gmail.com
+
+echo
+echo -e "${CYAN}---------- ARP-SCAN ----------${NC}"
+echo 
+sudo DEBIAN_FRONTEND=noninteractive apt -yq install arp-scan
+
+echo
 echo -e "${CYAN}---------- GATEWAY ----------${NC}"
 gateway=$(route -n | grep UG | grep -E -o "(1[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)")
 echo "Gateway: $gateway"
