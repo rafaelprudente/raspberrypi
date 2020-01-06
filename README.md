@@ -1,6 +1,6 @@
-# raspberry pi setup
+# raspberry pi scripts
 
-# download script
+# download
 
 sudo curl https://raw.githubusercontent.com/rafaelprudente/raspberrypi-scripts/master/setup.sh --output setup.sh
 
