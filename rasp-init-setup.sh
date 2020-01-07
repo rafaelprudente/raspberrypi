@@ -21,8 +21,8 @@ sudo apt -yq install whiptail
 echo -e "${CYAN}---------- GIT ----------${NC}"
 sudo apt -yq install git 
 
-echo -e "${CYAN}---------- ARP-SCAN ----------${NC}"
-sudo apt -yq install arp-scan 
+echo -e "${CYAN}---------- NMAP ----------${NC}"
+sudo apt -yq install nmap
 
 echo -e "${CYAN}---------- INSTALL JAVA 8 ----------${NC}"
 sudo apt -yq install openjdk-8-jre 
@@ -30,22 +30,19 @@ sudo apt -yq install openjdk-8-jre
 echo -e "${CYAN}---------- INSTALL JAVA 11 ----------${NC}"
 sudo apt -yq install openjdk-11-jre 
 
-echo
 echo -e "${CYAN}---------- FIND GATEWAY ----------${NC}"
-echo 
 gateway=$(route -n | grep UG | grep -E -o "(1[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)")
 echo "Gateway: $gateway"
 
-echo
 echo -e "${CYAN}---------- FIND NEW IP ----------${NC}"
-echo
 
 IFS='.'
 read -ra ipAddr <<< "$gateway"
 IFS=' '
 rootIP="${ipAddr[0]}.${ipAddr[1]}.${ipAddr[2]}"
+echo "Root IP: $rootIP"
  
-sudo arp-scan -I eth0 $rootIP.0/24 | grep -E -o "(1[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)" > ips.txt
+sudo nmap -sP -oG - $rootIP.0/24 | grep -E -o "(1[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)" > ips.txt
 lastIP=0
 while read IP; do
    IFS='.'
@@ -60,4 +57,15 @@ lastIP=$(( $lastIP + 1 ))
 newIP="$rootIP.$lastIP"
 echo "Available IP: $newIP"
 
-#clear
+echo -e "${CYAN}---------- SSH ----------${NC}"
+sudo systemctl enable ssh
+sudo systemctl start ssh
+
+read -p "Reboot now [Y/N]? " -n 1 -r
+if [[ ! $REPLY =~ ^[Yy]$ ]]
+then
+    echo
+    echo -e "${GREEN}Done!${NC}"
+    exit 0
+fi
+sudo reboot
