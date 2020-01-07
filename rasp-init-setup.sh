@@ -14,7 +14,7 @@ sudo apt -yq update &>/dev/null
 	i="0"
 	while (true)
 	do
-		proc=$(ps aux | grep -v grep | grep -e "apt")
+		proc=$(ps aux | grep -v grep | grep -e "_apt")
 		if [[ "$proc" == "" ]]; then break; fi
 		echo $i
 		i=$(expr $i + 1)
