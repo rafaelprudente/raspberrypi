@@ -9,7 +9,7 @@ export DEBIAN_FRONTEND=noninteractive
 
 #echo 10 | whiptail --title "Initial Setup" --gauge "Perform Update" 8 78 0
 #echo -e "${CYAN}---------- FIRST UPDATE ----------${NC}"
-sudo apt -yq update 2>/dev/null
+sudo apt -yq update &>/dev/null
 {
 	i="0"
 	while (true)
