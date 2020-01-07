@@ -9,22 +9,11 @@ export DEBIAN_FRONTEND=noninteractive
 
 #echo 10 | whiptail --title "Initial Setup" --gauge "Perform Update" 8 78 0
 #echo -e "${CYAN}---------- FIRST UPDATE ----------${NC}"
-sudo apt -yq update &>/dev/null
-{
-	i="0"
-	while (true)
-	do
-		proc=$(ps aux | grep -v grep | grep -e "_apt")
-		if [[ "$proc" == "" ]]; then break; fi
-		echo $i
-		i=$(expr $i + 1)
-	done
-	echo 100
-} | whiptail --title "Initial Setup" --gauge "Perform Update" 8 78 0
+sudo apt -yq update | debconf-apt-progress
 
 #echo 20 | whiptail --title "Initial Setup" --gauge "Perform Upgrade" 8 78 0
 echo -e "${CYAN}---------- FIRST UPGRADE ----------${NC}"
-sudo apt -yq full-upgrade >> rasp-init-setup.log
+sudo apt -yq full-upgrade | debconf-apt-progress
 
 #echo 30 | whiptail --title "Initial Setup" --gauge "Perform WHIPTAIL Install" 8 78 0
 echo -e "${CYAN}---------- WHIPTAIL ----------${NC}"
