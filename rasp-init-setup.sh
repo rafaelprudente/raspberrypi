@@ -9,6 +9,24 @@ NC='\033[0m'
 
 export DEBIAN_FRONTEND=noninteractive
 
+echo -e "${CYAN}---------- ADD REPOSITORIES ----------${NC}"
+if $(grep -q webmin /etc/apt/sources.list); then 
+	echo -e "${GREEN}webmin is in sources file${NC}"; 
+else 
+	echo -e "${RED}webmin is not in sources file${NC}"; 
+	echo "" | sudo tee -a /etc/apt/sources.list > /dev/null; 
+	echo "deb https://download.webmin.com/download/repository sarge contrib" | sudo tee -a /etc/apt/sources.list > /dev/null; 
+
+	echo -e "${RED}delete old key${NC}"; 
+	sudo rm -f /root/jcameron-key.asc
+
+	echo -e "${RED}download new key${NC}"; 
+	sudo wget http://www.webmin.com/jcameron-key.asc -P /root
+
+	echo -e "${RED}install key${NC}"; 
+	sudo apt-key add /root/jcameron-key.asc
+fi
+
 echo -e "${CYAN}---------- FIRST UPDATE ----------${NC}"
 sudo apt -yq update
 
@@ -23,6 +41,10 @@ sudo apt -yq install git
 
 echo -e "${CYAN}---------- NMAP ----------${NC}"
 sudo apt -yq install nmap
+
+echo -e "${CYAN}---------- WEBMIN ----------${NC}"
+sudo apt -yq install apt-transport-https
+sudo apt -yq install webmin
 
 echo -e "${CYAN}---------- INSTALL JAVA 8 ----------${NC}"
 sudo apt -yq install openjdk-8-jre 
